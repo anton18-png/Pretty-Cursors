@@ -188,6 +188,7 @@ function makeCard(cursor) {
   if (cursor.installed) card.classList.add('installed');
   if (cursor.downloaded) card.classList.add('downloaded');
 
+  // Превью
   const preview = document.createElement('div');
   preview.className = 'cursor-preview';
 
@@ -207,6 +208,7 @@ function makeCard(cursor) {
   }
   card.appendChild(preview);
 
+  // Инфо
   const info = document.createElement('div');
   info.className = 'cursor-info';
   info.innerHTML = `
@@ -215,12 +217,14 @@ function makeCard(cursor) {
   `;
   card.appendChild(info);
 
+  // Бейджи
   const badges = document.createElement('div');
   badges.className = 'cursor-badges';
   if (cursor.installed) badges.innerHTML += '<span class="badge installed">✓ Установлен</span>';
   else if (cursor.downloaded) badges.innerHTML += '<span class="badge downloaded">📦 Скачан</span>';
   card.appendChild(badges);
 
+  // Кнопки
   const actions = document.createElement('div');
   actions.className = 'cursor-actions';
 
