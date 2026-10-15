@@ -1,0 +1,52 @@
+# ============================================================
+#  Pretty Cursors — .gitignore
+# ============================================================
+
+# Портативные данные приложения (создаются при запуске)
+extreme_data/
+
+# Сборка electron-builder
+dist/
+
+# Зависимости
+node_modules/
+
+# Windows-мусор
+desktop.ini
+Thumbs.db
+ehthumbs.db
+
+# Логи
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Кэш
+.cache/
+.npm/
+.eslintcache
+
+# IDE / редакторы
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.Spotlight-V100
+.Trashes
+
+# Сборка
+out/
+build/
+*.tsbuildinfo
+
+# Временные файлы
+*.tmp
+*.bak
+*.old
