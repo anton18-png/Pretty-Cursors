@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Pixelify+Sans:wght@400..700&family=IBM+Plex+Mono:wght@400;600;700&display=swap');
+
+:root {
+  --font-logo:  'Jersey 10', 'Pixelify Sans', 'Courier New', monospace;
+  --font-pixel: 'Pixelify Sans', 'Courier New', monospace;
+  --font-mono:  'IBM Plex Mono', Consolas, 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  color: #cdd6f4;
+  background: #1e1e2e url('assets/notnet.png') center/cover no-repeat fixed;
+  user-select: none;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  padding: 44px 36px;
+  max-width: 580px;
+  background: rgba(24, 24, 37, 0.85);
+  border: 1px solid #313244;
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .55);
+  animation: fadeIn .35s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.error-logo {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .6));
+}
+
+/* Заголовок "НЕТ ПОДКЛЮЧЕНИЯ" — Pixelify Sans (Jersey не имеет кириллицы) */
+.error-title {
+  font-family: var(--font-pixel);
+  font-size: 26px;
+  font-weight: 700;
+  color: #f38ba8;
+  letter-spacing: 1px;
+  text-shadow:
+    2px 2px 0 rgba(0, 0, 0, .8),
+    4px 4px 0 rgba(243, 139, 168, .35);
+  margin-top: 4px;
+  line-height: 1.2;
+}
+
+.error-text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  color: #cdd6f4;
+  max-width: 470px;
+}
+
+.error-hint {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.55;
+  color: #7f849c;
+  max-width: 430px;
+}
+
+.error-btn {
+  margin-top: 8px;
+  padding: 13px 28px;
+  border-radius: 10px;
+  border: 1px solid #cba6f7;
+  background: #cba6f7;
+  color: #1e1e2e;
+  font-family: var(--font-pixel);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, transform .1s;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, .25);
+}
+.error-btn:hover:not(:disabled) {
+  background: #b4befe;
+  border-color: #b4befe;
+}
+.error-btn:active:not(:disabled) { transform: scale(.97); }
+.error-btn:disabled { opacity: .6; cursor: wait; }
+
+.error-status {
+  min-height: 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #a6adc8;
+  margin-top: 4px;
+}

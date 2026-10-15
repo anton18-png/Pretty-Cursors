@@ -1,0 +1,564 @@
+/* ============================================================
+   Шрифты
+   - Jersey 10      — только заголовки "Pretty Cursors"
+   - Pixelify Sans  — прочие заголовки (h3 в настройках и т.д.)
+   - IBM Plex Mono  — основной текст интерфейса
+   ============================================================ */
+   @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Pixelify+Sans:wght@400..700&family=IBM+Plex+Mono:wght@400;600;700&display=swap');
+
+   :root {
+     --font-logo:  'Jersey 10', 'Pixelify Sans', 'Courier New', monospace;
+     --font-pixel: 'Pixelify Sans', 'Courier New', monospace;
+     --font-mono:  'IBM Plex Mono', Consolas, 'Courier New', monospace;
+     --font-ui:    'Segoe UI', system-ui, sans-serif;
+   }
+   
+   * { margin: 0; padding: 0; box-sizing: border-box; }
+   
+   html, body {
+     height: 100%;
+     width: 100%;
+     overflow: hidden;
+     font-family: var(--font-mono);
+     font-size: 13px;
+     line-height: 1.6;
+     color: #cdd6f4;
+     background: #1e1e2e url('assets/backgrounds/night_xp.png') center/cover no-repeat fixed;
+     user-select: none;
+   }
+   
+   body {
+     display: flex;
+     flex-direction: column;
+     height: 100vh;
+   }
+   
+   /* ============================================================
+      Шапка — поверх контента
+      ============================================================ */
+   .app-header {
+     position: relative;
+     z-index: 500;
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     padding: 14px 22px;
+     border-bottom: 1px solid #313244;
+     background: rgba(24, 24, 37, 0.85);
+     backdrop-filter: blur(6px);
+     flex-shrink: 0;
+   }
+   
+   .app-logo {
+     width: 60px;
+     height: 60px;
+     object-fit: contain;
+     flex-shrink: 0;
+     user-select: none;
+     -webkit-user-drag: none;
+     image-rendering: pixelated;
+   }
+   
+   .app-title {
+     display: flex;
+     flex-direction: column;
+     min-width: 0;
+     flex: 1;
+   }
+   
+   /* ============================================================
+      ГЛАВНЫЙ ЗАГОЛОВОК — Jersey 10
+      ============================================================ */
+   .app-title-h1 {
+     font-family: var(--font-logo);
+     font-size: 42px;
+     font-weight: 400;
+     color: #cba6f7;
+     letter-spacing: 1.5px;
+     text-shadow:
+       2px 2px 0 rgba(0, 0, 0, .6),
+       4px 4px 0 rgba(203, 166, 247, .25);
+     line-height: 1;
+     margin-bottom: 2px;
+   }
+   
+   /* Fallback, если Jersey 10 не загрузится */
+   .app-header h1 {
+     font-family: var(--font-logo);
+     font-size: 42px;
+     font-weight: 400;
+     color: #cba6f7;
+     letter-spacing: 1.5px;
+     text-shadow:
+       2px 2px 0 rgba(0, 0, 0, .6),
+       4px 4px 0 rgba(203, 166, 247, .25);
+     line-height: 1;
+     margin-bottom: 2px;
+   }
+   
+   .app-header p {
+     font-family: var(--font-mono);
+     font-size: 11px;
+     color: #7f849c;
+     margin-top: 2px;
+   }
+   
+   /* ============================================================
+      Зона настроек (шестерёнка + меню)
+      ============================================================ */
+   .settings-zone {
+     position: relative;
+     flex-shrink: 0;
+     display: flex;
+     align-items: flex-start;
+     justify-content: flex-end;
+     min-width: 44px;
+     min-height: 44px;
+   }
+   
+   .settings-btn {
+     width: 44px;
+     height: 44px;
+     border-radius: 10px;
+     border: 1px solid transparent;
+     background: transparent;
+     color: #cdd6f4;
+     font-size: 22px;
+     line-height: 1;
+     cursor: pointer;
+     opacity: 0;
+     pointer-events: none;
+     transition: opacity .18s, background .15s, border-color .15s, transform .2s;
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+   }
+   
+   .settings-zone:hover .settings-btn,
+   .settings-btn:focus-visible,
+   .settings-zone:has(.settings-menu:not([hidden])) .settings-btn {
+     opacity: 1;
+     pointer-events: auto;
+   }
+   
+   .settings-btn:hover {
+     background: #313244;
+     border-color: #45475a;
+     transform: rotate(45deg);
+   }
+   
+   /* ============================================================
+      Меню настроек — поверх всего
+      ============================================================ */
+   .settings-menu {
+     position: absolute;
+     top: calc(100% + 6px);
+     right: 0;
+     width: 400px;
+     max-width: calc(100vw - 44px);
+     max-height: 70vh;
+     overflow-y: auto;
+     background: rgba(24, 24, 37, 0.97);
+     border: 1px solid #45475a;
+     border-radius: 12px;
+     box-shadow: 0 12px 32px rgba(0, 0, 0, .55);
+     backdrop-filter: blur(10px);
+     z-index: 1000;
+     padding: 12px;
+     animation: settingsIn .15s ease-out;
+   }
+   
+   @keyframes settingsIn {
+     from { opacity: 0; transform: translateY(-6px); }
+     to   { opacity: 1; transform: translateY(0); }
+   }
+   
+   .settings-tabs {
+     display: flex;
+     gap: 6px;
+     margin-bottom: 10px;
+     border-bottom: 1px solid #313244;
+     padding-bottom: 8px;
+   }
+   
+   .settings-tab {
+     flex: 1;
+     padding: 8px 10px;
+     border-radius: 8px;
+     border: 1px solid transparent;
+     background: transparent;
+     color: #a6adc8;
+     font-family: var(--font-mono);
+     font-size: 11px;
+     font-weight: 600;
+     cursor: pointer;
+     transition: background .15s, color .15s;
+   }
+   .settings-tab:hover { background: #313244; color: #cdd6f4; }
+   .settings-tab.active {
+     background: #cba6f7;
+     border-color: #cba6f7;
+     color: #1e1e2e;
+   }
+   
+   /* ============================================================
+      Заголовок "Pretty Cursors" в меню О программе — тоже Jersey 10
+      ============================================================ */
+   .settings-title {
+     font-family: var(--font-logo);
+     font-size: 28px;
+     font-weight: 400;
+     color: #cba6f7;
+     margin-bottom: 6px;
+     letter-spacing: 1px;
+     text-shadow:
+       2px 2px 0 rgba(0, 0, 0, .6),
+       4px 4px 0 rgba(203, 166, 247, .25);
+     line-height: 1;
+   }
+   
+   /* Прочие h3 в настройках — Pixelify Sans */
+   .settings-panel h3 {
+     font-family: var(--font-pixel);
+     font-size: 16px;
+     font-weight: 700;
+     color: #cba6f7;
+     margin-bottom: 8px;
+     letter-spacing: 0.5px;
+     text-shadow: 2px 2px 0 rgba(0, 0, 0, .6);
+   }
+   .settings-panel { font-family: var(--font-mono); font-size: 12px; line-height: 1.6; }
+   
+   .settings-muted { color: #7f849c; margin-bottom: 10px; }
+   .settings-text { margin: 8px 0; color: #cdd6f4; }
+   .settings-list { margin: 6px 0 10px 18px; color: #cdd6f4; }
+   .settings-list li { margin-bottom: 6px; }
+   .settings-list code,
+   .settings-text code {
+     background: #313244;
+     border: 1px solid #45475a;
+     border-radius: 4px;
+     padding: 1px 5px;
+     font-family: var(--font-mono);
+     font-size: 11px;
+     color: #f9e2af;
+   }
+   
+   /* ============================================================
+      Обои
+      ============================================================ */
+   .wallpaper-grid {
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 8px;
+     margin-top: 6px;
+   }
+   
+   .wallpaper-item {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 5px;
+     padding: 8px;
+     border: 1px solid #313244;
+     border-radius: 10px;
+     cursor: pointer;
+     transition: border-color .15s, background .15s;
+     background: #1e1e2e;
+   }
+   .wallpaper-item:hover { border-color: #585b70; background: #252537; }
+   .wallpaper-item input[type="radio"] { display: none; }
+   .wallpaper-item input[type="radio"]:checked ~ .wallpaper-preview {
+     border-color: #cba6f7;
+     box-shadow: 0 0 0 2px rgba(203, 166, 247, .35);
+   }
+   .wallpaper-item input[type="radio"]:checked ~ span { color: #cba6f7; font-weight: 700; }
+   
+   .wallpaper-preview {
+     width: 100%;
+     height: 70px;
+     border-radius: 8px;
+     border: 2px solid #313244;
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+     transition: border-color .15s, box-shadow .15s;
+   }
+   
+   .wallpaper-item span {
+     font-family: var(--font-mono);
+     font-size: 11px;
+     color: #a6adc8;
+     text-align: center;
+   }
+   
+   /* ============================================================
+      Контент
+      ============================================================ */
+   .content {
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+     padding: 14px 20px;
+     overflow: hidden;
+     min-height: 0;
+     position: relative;
+     z-index: 1;
+   }
+   
+   .toolbar {
+     display: flex;
+     gap: 8px;
+     margin-bottom: 10px;
+     flex-shrink: 0;
+     flex-wrap: wrap;
+   }
+   
+   .btn {
+     display: inline-flex;
+     align-items: center;
+     gap: 6px;
+     padding: 9px 14px;
+     border-radius: 8px;
+     border: 1px solid #45475a;
+     background: #313244;
+     color: #cdd6f4;
+     font-family: var(--font-mono);
+     font-size: 12px;
+     font-weight: 600;
+     cursor: pointer;
+     transition: background .15s;
+   }
+   .btn:hover { background: #45475a; }
+   .btn:active { transform: scale(.97); }
+   .btn:disabled { opacity: .5; cursor: not-allowed; }
+   
+   .btn.primary {
+     background: #cba6f7;
+     border-color: #cba6f7;
+     color: #1e1e2e;
+   }
+   .btn.primary:hover { background: #b4befe; border-color: #b4befe; }
+   
+   .btn.danger {
+     background: #f38ba8;
+     border-color: #f38ba8;
+     color: #1e1e2e;
+   }
+   .btn.danger:hover { background: #eba0ac; border-color: #eba0ac; }
+   
+   .status-bar {
+     padding: 9px 12px;
+     background: rgba(24, 24, 37, 0.85);
+     border: 1px solid #313244;
+     border-radius: 8px;
+     margin-bottom: 12px;
+     font-family: var(--font-mono);
+     font-size: 12px;
+     color: #a6adc8;
+     flex-shrink: 0;
+     backdrop-filter: blur(6px);
+   }
+   
+   .cursor-grid {
+     flex: 1;
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+     gap: 12px;
+     overflow-y: auto;
+     padding-right: 6px;
+     align-content: start;
+     min-height: 0;
+   }
+   
+   .cursor-card {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     padding: 14px 12px;
+     background: rgba(24, 24, 37, 0.85);
+     border: 1px solid #313244;
+     border-radius: 12px;
+     transition: border-color .15s, transform .1s;
+     backdrop-filter: blur(6px);
+   }
+   .cursor-card:hover {
+     border-color: #585b70;
+     transform: translateY(-2px);
+   }
+   .cursor-card.installed { border-color: #a6e3a1; }
+   .cursor-card.downloaded:not(.installed) { border-color: #89b4fa; }
+   
+   .cursor-preview {
+     width: 64px;
+     height: 64px;
+     margin: 0 auto;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background: #1e1e2e;
+     border-radius: 10px;
+     border: 1px solid #313244;
+     overflow: hidden;
+   }
+   .cursor-icon {
+     width: 48px;
+     height: 48px;
+     object-fit: contain;
+     image-rendering: pixelated;
+   }
+   .cursor-icon-fallback { font-size: 32px; }
+   
+   .cursor-info {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 3px;
+     text-align: center;
+     width: 100%;
+   }
+   .cursor-name {
+     font-family: var(--font-mono);
+     font-size: 13px;
+     font-weight: 700;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+     width: 100%;
+   }
+   .cursor-size {
+     font-family: var(--font-mono);
+     font-size: 11px;
+     color: #7f849c;
+   }
+   
+   .cursor-badges {
+     display: flex;
+     justify-content: center;
+     gap: 4px;
+     min-height: 18px;
+   }
+   .badge {
+     font-family: var(--font-mono);
+     font-size: 10px;
+     font-weight: 600;
+     padding: 2px 8px;
+     border-radius: 8px;
+     white-space: nowrap;
+   }
+   .badge.installed {
+     background: rgba(166, 227, 161, .2);
+     color: #a6e3a1;
+     border: 1px solid #a6e3a1;
+   }
+   .badge.downloaded {
+     background: rgba(137, 180, 250, .2);
+     color: #89b4fa;
+     border: 1px solid #89b4fa;
+   }
+   
+   .cursor-actions {
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 5px;
+   }
+   .action-btn {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     gap: 4px;
+     padding: 7px 8px;
+     border-radius: 7px;
+     border: 1px solid #45475a;
+     background: #1e1e2e;
+     color: #cdd6f4;
+     font-family: var(--font-mono);
+     font-size: 11px;
+     font-weight: 600;
+     cursor: pointer;
+     transition: background .15s;
+     white-space: nowrap;
+     overflow: hidden;
+   }
+   .action-btn:hover:not(:disabled) { background: #313244; }
+   .action-btn:disabled { opacity: .45; cursor: not-allowed; }
+   .action-btn.busy { cursor: wait; opacity: .75; }
+   
+   .action-btn.btn-download { border-color: rgba(137,180,250,.5); color: #89b4fa; }
+   .action-btn.btn-install  { border-color: rgba(166,227,161,.5); color: #a6e3a1; }
+   .action-btn.btn-apply    { border-color: rgba(203,166,247,.5); color: #cba6f7; }
+   .action-btn.btn-delete   { border-color: rgba(243,139,168,.5); color: #f38ba8; }
+   
+   .loader {
+     grid-column: 1 / -1;
+     width: 32px;
+     height: 32px;
+     margin: 40px auto;
+     border: 3px solid #45475a;
+     border-top-color: #cba6f7;
+     border-radius: 50%;
+     animation: spin 0.8s linear infinite;
+   }
+   .spinner {
+     width: 12px;
+     height: 12px;
+     border: 2px solid #585b70;
+     border-top-color: #cdd6f4;
+     border-radius: 50%;
+     animation: spin 0.6s linear infinite;
+     display: inline-block;
+   }
+   @keyframes spin { to { transform: rotate(360deg); } }
+   
+   .empty {
+     grid-column: 1 / -1;
+     text-align: center;
+     padding: 40px 20px;
+     color: #7f849c;
+     line-height: 1.6;
+     font-family: var(--font-mono);
+   }
+   .muted { color: #7f849c; }
+   
+   #toast-container {
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     display: flex;
+     flex-direction: column;
+     gap: 8px;
+     z-index: 2000;
+     pointer-events: none;
+   }
+   .toast {
+     padding: 11px 16px;
+     background: #313244;
+     border: 1px solid #45475a;
+     border-left: 3px solid #89b4fa;
+     border-radius: 8px;
+     color: #cdd6f4;
+     font-family: var(--font-mono);
+     font-size: 12px;
+     font-weight: 600;
+     min-width: 220px;
+     max-width: 420px;
+     box-shadow: 0 4px 12px rgba(0,0,0,.4);
+     pointer-events: auto;
+   }
+   .toast.success { border-left-color: #a6e3a1; }
+   .toast.error   { border-left-color: #f38ba8; }
+   .toast.warning { border-left-color: #f9e2af; }
+   
+   ::-webkit-scrollbar { width: 8px; height: 8px; }
+   ::-webkit-scrollbar-thumb { background: #45475a; border-radius: 4px; }
+   ::-webkit-scrollbar-thumb:hover { background: #585b70; }
+   
+   /* ============================================================
+      Смена обоев программы
+      ============================================================ */
+   body.wallpaper-night_xp {
+     background-image: url('assets/backgrounds/night_xp.png');
+   }
+   body.wallpaper-magical_sky {
+     background-image: url('assets/backgrounds/magical_sky.png');
+   }
