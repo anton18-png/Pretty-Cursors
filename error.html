@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Нет подключения — Pretty Cursors</title>
+<link rel="stylesheet" href="error.css">
+</head>
+<body>
+
+<div class="error-page">
+
+  <img class="error-logo" src="assets/logo.png" alt="Pretty Cursors">
+
+  <h1 class="error-title">Нет подключения к интернету</h1>
+
+  <p class="error-text">
+    Pretty Cursors не может связаться с сервером, чтобы загрузить список курсоров.
+    Проверьте интернет-соединение и попробуйте снова.
+  </p>
+
+  <p class="error-hint">
+    Если вы за прокси или VPN — убедитесь, что они работают корректно.
+  </p>
+
+  <button class="error-btn" id="btn-retry">🔄 Повторить</button>
+
+  <p class="error-status" id="error-status"></p>
+
+</div>
+
+<script>
+  const btn = document.getElementById('btn-retry');
+  const status = document.getElementById('error-status');
+
+  btn.addEventListener('click', async () => {
+    btn.disabled = true;
+    status.textContent = 'Проверяем соединение…';
+    try {
+      const r = await window.api.net.retry();
+      if (r && r.ok) {
+        status.textContent = 'Подключение восстановлено, загружаем…';
+      } else {
+        status.textContent = 'Интернет всё ещё недоступен. Проверьте соединение.';
+      }
+    } catch (e) {
+      status.textContent = 'Ошибка проверки: ' + e.message;
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  // Автопроверка каждые 5 секунд — если сеть появилась, сами уйдём на главную
+  setInterval(async () => {
+    try {
+      const r = await window.api.net.check();
+      if (r && r.ok) {
+        status.textContent = 'Подключение восстановлено, загружаем…';
+        await window.api.net.retry();
+      }
+    } catch {}
+  }, 5000);
+</script>
+
+</body>
+</html>

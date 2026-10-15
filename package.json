@@ -1,0 +1,47 @@
+{
+  "name": "pretty-cursors",
+  "version": "1.0.0",
+  "description": "Pretty Cursors — minimalist cursor manager",
+  "main": "main.js",
+  "author": "Anton18-PNG",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^44.4.3",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.pretty.cursors",
+    "productName": "Pretty Cursors",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico",
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "Pretty Cursors",
+      "artifactName": "Pretty-Cursors-Setup-${version}.${ext}",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico"
+    },
+    "files": [
+      "**/*",
+      "!extreme_data/**",
+      "!dist/**",
+      "!Utils/**"
+    ],
+    "extraResources": [
+      { "from": "Utils", "to": "Utils" }
+    ]
+  }
+}

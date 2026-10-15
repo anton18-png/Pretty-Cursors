@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Pretty Cursors</title>
+<link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+<header class="app-header">
+  <img class="app-logo" src="assets/logo.png" alt="Pretty Cursors">
+  <div class="app-title">
+    <h1>Pretty Cursors</h1>
+    <p>Красивые курсоры в один клик</p>
+  </div>
+
+  <div class="settings-zone">
+    <button class="settings-btn" id="btn-settings" title="Настройки" aria-label="Настройки">
+      ⚙️
+    </button>
+
+    <div class="settings-menu" id="settings-menu" hidden>
+      <div class="settings-tabs">
+        <button class="settings-tab active" data-tab="about">ℹ️ О программе</button>
+        <button class="settings-tab" data-tab="wallpaper">🖼️ Обои</button>
+      </div>
+
+      <div class="settings-panel" data-panel="about">
+        <h3>Pretty Cursors</h3>
+        <p class="settings-muted">Версия 1.0.0 · Anton18-PNG</p>
+
+        <p class="settings-text">
+          <b>Как это работает:</b>
+        </p>
+        <ul class="settings-list">
+          <li>📥 <b>Скачать</b> — архив <code>.7z</code> с курсором качается с GitHub в папку
+            <code>extreme_data/cursors_cache/</code>.</li>
+          <li>✅ <b>Установить</b> — архив распаковывается во временную папку, файлы <code>.cur/.ani</code>
+            копируются в <code>C:\Windows\Cursors\&lt;имя&gt;\</code>, а пути прописываются в реестр
+            <code>HKCU\Control Panel\Cursors</code>.</li>
+          <li>▶️ <b>Применить</b> — курсор переключается без перезагрузки через
+            <code>SystemParametersInfo(SPI_SETCURSORS)</code>.</li>
+          <li>🗑️ <b>Удалить</b> — папка курсора удаляется из <code>C:\Windows\Cursors</code>,
+            архив — из кэша.</li>
+          <li>🔄 <b>Обновить</b> — перечитывает список из <code>assets/cursors.json</code>.</li>
+        </ul>
+
+        <p class="settings-text">
+          Приложение требует <b>прав администратора</b>, потому что пишет в системную папку
+          <code>C:\Windows\Cursors</code>.
+        </p>
+
+        <p class="settings-text settings-muted">
+          Все данные хранятся портативно — в папке <code>extreme_data</code> рядом с программой.
+          Удаление программы не затрагивает систему, кроме уже установленных курсоров.
+        </p>
+      </div>
+
+      <div class="settings-panel" data-panel="wallpaper" hidden>
+        <h3>Обои программы</h3>
+        <p class="settings-muted">Выберите фон интерфейса</p>
+
+        <div class="wallpaper-grid">
+          <label class="wallpaper-item">
+            <input type="radio" name="wallpaper" value="night_xp">
+            <div class="wallpaper-preview" style="background-image: url('assets/backgrounds/night_xp.png');"></div>
+            <span>Night XP</span>
+          </label>
+
+          <label class="wallpaper-item">
+            <input type="radio" name="wallpaper" value="magical_sky">
+            <div class="wallpaper-preview" style="background-image: url('assets/backgrounds/magical_sky.png');"></div>
+            <span>Magical Sky</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="content">
+  <div class="toolbar">
+    <button class="btn primary" id="btn-refresh">🔄 Обновить</button>
+    <button class="btn" id="btn-open-folder">📂 Папка курсоров</button>
+    <button class="btn danger" id="btn-delete-all">🗑️ Удалить все курсоры</button>
+  </div>
+
+  <div class="status-bar" id="status-bar">
+    <span class="status-text">Загрузка…</span>
+  </div>
+
+  <div class="cursor-grid" id="cursor-grid"></div>
+</main>
+
+<div id="toast-container"></div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
