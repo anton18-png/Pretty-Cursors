@@ -2,12 +2,14 @@
 
 <img src="assets/logo.png" alt="Pretty Cursors" width="160" />
 
+# Pretty Cursors
+
 **Красивые курсоры для Windows в один клик.**
 
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D4?logo=windows)](https://www.microsoft.com/windows)
 [![Electron](https://img.shields.io/badge/Electron-44-47848F?logo=electron)](https://www.electronjs.org/)
 [![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-cba6f7)]()
+[![Version](https://img.shields.io/badge/version-1.0.1-cba6f7)](https://github.com/anton18-png/Pretty-Cursors/releases)
 
 </div>
 
@@ -16,10 +18,18 @@
 ## ✨ Что это
 
 **Pretty Cursors** — менеджер курсоров для Windows. Позволяет устанавливать,
-применять и удалять кастомные курсоры (например, из аниме, игр и т.д.) без ручного
-копания в реестре и папке `C:\Windows\Cursors`.
+применять и удалять кастомные курсоры (аниме, игры и т.д.) без ручного копания в реестре
+и папке `C:\Windows\Cursors`.
 
 Всё, что нужно — нажать одну кнопку.
+
+---
+
+## 📸 Скриншот
+
+<p align="center">
+  <img src="assets/screenshot.png" alt="Pretty Cursors — главное окно" width="90%" />
+</p>
 
 ---
 
@@ -29,12 +39,11 @@
 - ✅ **Установка** — распаковка `.7z` и копирование `.cur/.ani` в `C:\Windows\Cursors`.
 - ▶️ **Применение** — мгновенная смена курсора без перезагрузки.
 - 🗑️ **Удаление** — по одному или все сразу, с возвратом стандартного курсора Windows.
-- 🖼️ **Смена обоев** интерфейса — `Night XP` и `Magical Sky`.
-- ℹ️ **Встроенная справка** — как работает приложение, прямо в меню.
+- 🖼️ **Смена обоев** интерфейса — `Night XP` (по умолчанию) и `Magical Sky`.
+- ℹ️ **Встроенная справка** — как работает приложение, прямо в меню настроек.
 - 🌐 **Проверка интернета** — если сети нет, показывается отдельный экран с подсказкой.
-
-
-<img width="1186" height="793" alt="изображение" src="https://github.com/user-attachments/assets/b107daa6-f58f-482e-8ae7-cd0568295084" />
+- 📦 **Портативность** — все данные (кэш, temp, настройки) хранятся рядом с `.exe` в
+  папке `extreme_data/`, но в `%AppData%`.
 
 ---
 
@@ -44,7 +53,7 @@
 
 | Действие | Что происходит |
 |---|---|
-| **Скачать** | `.7z`-архив качается с `raw.githubusercontent.com/...` в `extreme_data/cursors_cache/` |
+| **Скачать** | `.7z`-архив качается с `raw.githubusercontent.com` в `extreme_data/cursors_cache/` |
 | **Установить** | Архив распаковывается через `Utils/7z.exe` во временную папку, файлы `.cur/.ani` копируются в `C:\Windows\Cursors\<имя>\` |
 | **Применить** | Пути прописываются в `HKCU\Control Panel\Cursors`, изменения применяются через `SystemParametersInfo(SPI_SETCURSORS)` — без перезагрузки |
 | **Удалить** | Папка курсора удаляется, кэш-архив стирается |
@@ -58,7 +67,9 @@
 
 ## 📦 Установка
 
-1. Скачайте `Pretty-Cursors-Setup-1.0.0.exe` из раздела [Releases](../../releases).
+### Готовый установщик
+
+1. Скачайте `Pretty-Cursors-Setup-1.0.1.exe` из раздела [Releases](../../releases).
 2. Запустите — установщик попросит права администратора.
 3. Установите в любую папку (по умолчанию — `%LocalAppData%\Programs\Pretty Cursors`).
 4. Запустите **Pretty Cursors** из меню «Пуск» или с рабочего стола.
@@ -89,6 +100,10 @@ npm start
 # 4. Собрать установщик
 npm run build
 ```
+
+После сборки готовый установщик появится в `dist/Pretty-Cursors-Setup-1.0.1.exe`.
+
+---
 
 ## 📄 Лицензия
 
